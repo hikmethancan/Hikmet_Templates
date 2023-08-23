@@ -125,7 +125,6 @@ GameObject:
   - component: {fileID: 3737338613184077617}
   - component: {fileID: 3737338613184077619}
   - component: {fileID: 3737338613184077616}
-  - component: {fileID: 270325983053161006}
   m_Layer: 5
   m_Name: Splash
   m_TagString: Untagged
@@ -193,22 +192,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &270325983053161006
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3737338613184077622}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a5cc704629b1094eb92cb7a3990b3c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  loadingImg: {fileID: 0}
-  loadingText: {fileID: 0}
-  splash: {fileID: 0}
-  loadingTime: 0
 --- !u!1 &6308461793818590794
 GameObject:
   m_ObjectHideFlags: 0
@@ -462,6 +445,30 @@ MonoBehaviour:
   loadingText: {fileID: 7077582833734321191}
   splash: {fileID: 1679956556851991284}
   loadingTime: 10
+  loadingCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &7478842524301279165
 GameObject:
   m_ObjectHideFlags: 0

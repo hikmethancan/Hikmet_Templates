@@ -1,5 +1,7 @@
+using DG.Tweening;
 using System;
 using System.Collections;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,18 +14,18 @@ namespace HikmetTemplate.Scripts
         [SerializeField] private Image loadingImg;
         [SerializeField] private TMP_Text loadingText;
         [SerializeField] private GameObject splash;
-        
+
         [Header("Values")]
         [SerializeField] private int loadingTime;
-        
+        [SerializeField] private AnimationCurve loadingCurve;
+
         private const string SplashPlayedKey = "SplashPlayed";
-        
+
 
         private void Start()
         {
             splash.SetActive(false);
             bool isSplashPlayed = PlayerPrefs.GetInt(SplashPlayedKey, 0) == 1;
-
             if (!isSplashPlayed)
             {
                 splash.SetActive(true);
@@ -38,11 +40,19 @@ namespace HikmetTemplate.Scripts
             while (tempTime < loadingTime)
             {
                 tempTime += Time.deltaTime;
-                var tempPercentage = Mathf.InverseLerp(0, loadingTime, tempTime);
-                loadingText.SetText($"%{(tempPercentage * 100).ToString("F0")}");
-                loadingImg.fillAmount = tempPercentage;
+                var curveTime = Mathf.InverseLerp(0, loadingTime, tempTime);
+                var tempLoadingValue = loadingCurve.Evaluate(curveTime);
+                string tempPercentage = (tempLoadingValue * 100).ToString("F0");
+
+                loadingText.SetText($"%{tempPercentage}");
+                loadingImg.fillAmount = tempLoadingValue;
                 yield return null;
             }
+            splash.transform.DOScale(Vector3.zero, .4f).OnComplete(() =>
+            {
+                splash.transform.localScale = Vector3.zero;
+                splash.SetActive(false);
+            });
         }
     }
 }
